@@ -25,14 +25,14 @@ function App() {
 
     const columns = [
         // { title: "ID", field: "id", sorting: false },
-        { title: "ID", field: "id" },
-        { title: "Name", field: "name" },
-        { title: "Email", field: "email" },
-        { title: "Status", field: 'status', emptyValue: () => <em>null field</em> },
+        { title: "ID", field: "id", sorting: false, filtering: false },
+        { title: "Name", field: "name", sorting: false, filterPlaceholder: "search here" },
+        { title: "Email", field: "email", sorting: false, filtering: false },
+        { title: "Status", field: 'status', filtering: false, emptyValue: () => <em>null field</em> },
         // { title: "Role", field: "role", defaultSort: "asc" },
-        { title: "Role", field: "role" },
-        { title: "Gender", field: "gender", lookup: { M: "Male", F: "Female" } },
-        { title: "School fee", field: "fee", type: 'currency', currencySetting: { currencyCode: "LKR", minimumFractionDigits: 2 } }
+        { title: "Role", field: "role", sorting: false, filtering: false },
+        { title: "Gender", field: "gender", lookup: { M: "Male", F: "Female", sorting: false, filtering: false } },
+        { title: "School fee", field: "fee", type: 'currency', filtering: false, currencySetting: { currencyCode: "LKR", minimumFractionDigits: 2, sorting: false } }
     ];
 
     return (<div className="App">
@@ -42,12 +42,18 @@ function App() {
             title="Employee Data"
             // options={{ sorting: false, search: false, searchText: "raj", searchFieldAlignment: "left" }}
             options={{
-                // sorting: true,
                 search: true,
                 searchFieldAlignment: "right",
-                searchAutoFocus: "true",
+                searchAutoFocus: true,
                 searchFieldVariant: "filled",
-                filtering: true
+                paging: true,
+                pageSizeOptions: [2, 4, 8],
+                pageSize: 2,
+                paginationType: "stepped",
+                showFirstLastPageButtons: false,  // Corrected property name
+                paginationPosition: "bottom",
+                // sorting: false,  // If you want to disable sorting
+                // filtering: true,  // If you want to enable filtering
             }}
             data={tableData}
             columns={columns}
