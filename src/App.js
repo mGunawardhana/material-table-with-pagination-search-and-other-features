@@ -24,11 +24,13 @@ function App() {
     const [tableData, setTableData] = useState(empList); // Initialize with empList
 
     const columns = [
-        { title: "ID", field: "id", sorting: false },
+        // { title: "ID", field: "id", sorting: false },
+        { title: "ID", field: "id" },
         { title: "Name", field: "name" },
         { title: "Email", field: "email" },
         { title: "Status", field: 'status', emptyValue: () => <em>null field</em> },
-        { title: "Role", field: "role", defaultSort: "asc" },
+        // { title: "Role", field: "role", defaultSort: "asc" },
+        { title: "Role", field: "role" },
         { title: "Gender", field: "gender", lookup: { M: "Male", F: "Female" } },
         { title: "School fee", field: "fee", type: 'currency', currencySetting: { currencyCode: "LKR", minimumFractionDigits: 2 } }
     ];
@@ -40,7 +42,7 @@ function App() {
             title="Employee Data"
             // options={{ sorting: false, search: false, searchText: "raj", searchFieldAlignment: "left" }}
             options={{
-                sorting: true,
+                // sorting: true,
                 search: true,
                 searchFieldAlignment: "right",
                 searchAutoFocus: "true",
