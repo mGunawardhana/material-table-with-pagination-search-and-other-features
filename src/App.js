@@ -31,33 +31,53 @@ function App() {
         { title: "Status", field: 'status', filtering: false, emptyValue: () => <em>null field</em> },
         // { title: "Role", field: "role", defaultSort: "asc" },
         { title: "Role", field: "role", sorting: false, filtering: false },
-        { title: "Gender", field: "gender", lookup: { M: "Male", F: "Female", sorting: false, filtering: false } },
+        { title: "Gender", field: "gender", lookup: { M: "Male", F: "Female", sorting: false, filtering: false }, export: false },
         { title: "School fee", field: "fee", type: 'currency', filtering: false, currencySetting: { currencyCode: "LKR", minimumFractionDigits: 2, sorting: false } }
     ];
 
     return (<div className="App">
         <h1 align="center">React-App</h1>
         <h4 align='center'>Material Table</h4>
-        <MaterialTable
-            title="Employee Data"
-            // options={{ sorting: false, search: false, searchText: "raj", searchFieldAlignment: "left" }}
-            options={{
-                search: true,
-                searchFieldAlignment: "right",
-                searchAutoFocus: true,
-                searchFieldVariant: "filled",
-                paging: true,
-                pageSizeOptions: [2, 4, 8],
-                pageSize: 2,
-                paginationType: "stepped",
-                showFirstLastPageButtons: false,  // Corrected property name
-                paginationPosition: "bottom",
-                // sorting: false,  // If you want to disable sorting
-                // filtering: true,  // If you want to enable filtering
-            }}
-            data={tableData}
-            columns={columns}
-        />
+        <div style={{
+            display: "flex",
+            justifyContent: "center",  // Center horizontally
+            alignItems: "center",      // Center vertically           // Adjust the height as needed
+        }} >
+            <MaterialTable
+                title="Employee Data"
+                // options={{ sorting: false, search: false, searchText: "raj", searchFieldAlignment: "left" }}
+
+                //adding data to table
+                editable={{
+                    onRowAdd: (newRow) => new Promise((resolve, reject) => {
+                        console.log(newRow);
+                    })
+                }}
+
+
+                options={{
+                    search: true,
+                    searchFieldAlignment: "right",
+                    searchAutoFocus: true,
+                    searchFieldVariant: "filled",
+                    paging: true,
+                    pageSizeOptions: [2, 4, 8],
+                    pageSize: 2,
+                    paginationType: "stepped",
+                    showFirstLastPageButtons: false,  // Corrected property name
+                    paginationPosition: "bottom",
+                    exportButton: true,
+                    exportAllData: true,
+                    exportFileName: "Table_Data",
+                    addRowPosition: "first",
+                    actionsColumnIndex: -1
+                    // sorting: false,  // If you want to disable sorting
+                    // filtering: true,  // If you want to enable filtering
+                }}
+                data={tableData}
+                columns={columns}
+            />
+        </div>
     </div>);
 }
 
