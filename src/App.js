@@ -46,7 +46,8 @@ function App() {
                 search: true,
                 searchFieldAlignment: "right",
                 searchAutoFocus: "true",
-                searchFieldVariant: "filled"
+                searchFieldVariant: "filled",
+                filtering: true
             }}
             data={tableData}
             columns={columns}
